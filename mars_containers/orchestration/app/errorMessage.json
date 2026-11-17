@@ -1,0 +1,25 @@
+{
+    "fromagent": "orchestrationagent",
+    "fromagentuuid": "8f1ae01e-28ea4-11f1-8dc6-88a29ea5ec48",
+    "toagent": "myagent",
+    "toagentuuid": "07a3da1e-7cca-11f1-8f2f-88a29ea5ec48",
+    "marsmessage": {
+		"status": "",
+        "reason": "",
+		"content": {
+	    	"fromagent": "myAgent",
+	    	"fromagentuuid": "ef89a01d-7cc9-11f1-8dc6-88a29ea5ec48",
+	    	"toagent": "whoAgent",
+	    	"toagentuuid": "07a3da1e-7cca-11f1-8f2f-88a29ea5ec48",
+		    "resoucemessage": {
+				"sample1": "sample2",
+				"sample3": "sample4",
+				"resourcemessage": {
+			    	"sample5": "sample6",
+			    	"sample7": "sample8"
+				}
+		    }
+	}
+    }
+}
+

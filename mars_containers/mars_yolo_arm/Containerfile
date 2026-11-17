@@ -1,0 +1,18 @@
+FROM docker.io/ultralytics/ultralytics:latest-arm64
+
+# コンテナの作業ディレクトリ設定
+WORKDIR /app
+
+# 依存関係ファイルのコピーとインストール（ビルドツール導入）
+COPY requirements.txt .
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc libc6-dev && \
+    pip install --no-cache-dir --break-system-packages -r requirements.txt && \
+    apt-get purge -y --auto-remove gcc libc6-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# アプリケーションコードのコピー
+COPY ./app /app
+
+# uvicornサーバーを実行
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

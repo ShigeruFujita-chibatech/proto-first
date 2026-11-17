@@ -1,0 +1,26 @@
+FROM python:3.14-slim
+
+# 依存パッケージのインストール（ビルドに必要な patch を追加）
+RUN apt-get update && apt-get install -y \
+    mecab \
+    libmecab-dev \
+    mecab-ipadic-utf8 \
+    git \
+    make \
+    curl \
+    xz-utils \
+    file \
+    patch \
+    && rm -rf /var/lib/apt/lists/*
+
+# mecab-ipadic-NEologd のビルド・インストール (-u オプションで sudo 回避)
+RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git \
+    && ./mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd -n -y -u \
+    && rm -rf mecab-ipadic-neologd
+
+# NEologd 辞書をデフォルト辞書に設定（debianリンクを上書き ＆ mecabrcも書き換え）
+RUN NEOLOGD_PATH=$(mecab-config --dicdir)/mecab-ipadic-neologd \
+    && sed -i "s|^dicdir = .*|dicdir = ${NEOLOGD_PATH}|g" /etc/mecabrc
+
+# Python用パッケージのインストール
+RUN pip install --no-cache-dir mecab-python3

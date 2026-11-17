@@ -1,0 +1,17 @@
+FROM docker.io/library/python:3.14-alpine
+
+# コンテナの作業ディレクトリ設定
+WORKDIR /app
+
+# 依存関係ファイルのコピーとインストール（ビルドツール導入）
+COPY requirements.txt .
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev && \
+    pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    apk del .build-deps
+
+# アプリケーションコードのコピー
+COPY ./app /app
+
+# uvicornサーバーを実行
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]

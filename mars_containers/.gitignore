@@ -1,0 +1,8 @@
+mars_env
+*.synctex.gz
+.env
+.aux
+*~
+venv
+.bbl
+.log

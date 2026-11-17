@@ -1,0 +1,7 @@
+FastAPIがすでに動作しているcontainerからJinja2を使って、
+1) 情報提供を行う箇所
+2) Accept, Reject, Propose, Cancelの四つのボタンを表示し、Proposeの場合の入力を受け付けるtext areaを表示する
+3) 2.のフォームを受け付ける処理
+を作る。
+
+例を教えて欲しい。

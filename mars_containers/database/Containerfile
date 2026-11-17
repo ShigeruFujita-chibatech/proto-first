@@ -1,0 +1,13 @@
+FROM docker.io/library/postgres:18.4-alpine3.23
+
+RUN apk add --no-cache musl-locales musl-locales-lang
+
+ENV TZ=Asia/Tokyo \
+    LANG=ja_JP.UTF-8 \
+    LANGUAGE=ja_JP:ja \
+    LC_ALL=ja_JP.UTF-8
+
+# init.sql for initialize database
+COPY ./init.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 5432

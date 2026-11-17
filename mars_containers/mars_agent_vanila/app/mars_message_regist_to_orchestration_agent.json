@@ -1,0 +1,18 @@
+{
+    "from_agent": "vanila",
+    "from_agent_uuid": "a04b726e-bfd0-4f7f-a33b-c9244ae2b42e",
+    "from_agent_host": "vanila",
+    "from_agent_port": 8000,
+    "to_agent": "orchestartion",
+    "to_agent_uuid": "89b3973f-6fc7-41e6-89cb-7caa0f758b7e",
+    "to_agent_host": "orchestration",
+    "to_agentport": 8000,
+    "content": {
+	"message-type": "mars",
+	"performative": "regist",
+	"content": {
+	    "Resoruce": "YOLO_detection",
+	    "Confidence": "0.5"
+	}
+    }
+}

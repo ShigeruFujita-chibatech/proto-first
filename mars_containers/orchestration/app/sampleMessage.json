@@ -1,0 +1,20 @@
+{
+    "message_type": "http/json",
+    "from_agent": "myAgent",
+    "from_agent_uuid": "ef89a01d-7cc9-11f1-8dc6-88a29ea5ec48",
+    "from_agent_host": "localhost",
+    "from_agent_port": 8000,
+    "to_agent": "whoAgent",
+    "to_agent_uuid": "07a3da1e-7cca-11f1-8f2f-88a29ea5ec48",
+    "to_agent_host": "localhost",
+    "to_agent_port": 8000,
+    "content": {
+	"message_type": "mars",
+	"performative": "echo-request",
+	"content": {
+	    "message_type": "resource",
+	    "sample5": "sample6",
+	    "sample7": "sample8"
+	}
+    }
+}

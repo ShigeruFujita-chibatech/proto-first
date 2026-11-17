@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作リクエスト</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+        .info-card { background: #f4f4f5; border-left: 4px solid #3b82f6; padding: 15px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .propose-box { margin-top: 15px; display: none; }
+        .btn-group button { margin-right: 8px; padding: 8px 16px; cursor: pointer; }
+        textarea { width: 100%; height: 80px; margin-top: 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- 1) 情報提供を行う箇所 -->
+    <div class="info-card">
+        <h3>{{ info_title }}</h3>
+        <p>{{ info_content }}</p>
+    </div>
+
+    {% if message %}
+    <p style="color: green; font-weight: bold;">{{ message }}</p>
+    {% endif %}
+
+    <!-- 2) フォームとボタン表示 -->
+    <form action="/submit" method="post">
+        <div class="form-group">
+            <p><strong>対応を選択してください:</strong></p>
+            <div class="btn-group">
+                <button type="submit" name="action" value="accept">Accept</button>
+                <button type="submit" name="action" value="reject">Reject</button>
+                <button type="button" id="proposeBtn">Propose</button>
+                <button type="submit" name="action" value="cancel">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Proposeの場合のみ表示・送信する入力領域 -->
+        <div id="proposeSection" class="propose-box">
+            <label for="proposal_text"><strong>提案内容を入力してください:</strong></label>
+            <textarea id="proposal_text" name="proposal_text" placeholder="ここに代替案や提案を入力..."></textarea>
+            <br>
+            <button type="submit" name="action" value="propose" style="margin-top: 8px;">提案を送信する</button>
+        </div>
+    </form>
+
+    <script>
+        const proposeBtn = document.getElementById('proposeBtn');
+        const proposeSection = document.getElementById('proposeSection');
+
+        proposeBtn.addEventListener('click', () => {
+            // Proposeボタンが押されたらテキストエリアを表示
+            proposeSection.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
